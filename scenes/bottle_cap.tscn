@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqfmc5jydh6pv"]
+
+[ext_resource type="PackedScene" uid="uid://brh3fdlek3b3n" path="res://models/BottleCap.glb" id="1_4e7of"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e7of"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[node name="BottleCap" instance=ExtResource("1_4e7of")]
+
+[node name="Bottle_Cap" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4e7of")

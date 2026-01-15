@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgs37bcy4m2wd"]
+
+[ext_resource type="PackedScene" uid="uid://c6mcwqf87j5g8" path="res://models/GymModels_OnlyGYM.glb" id="1_3dnxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dnxu"]
+albedo_color = Color(0.5409905, 0.5409905, 0.5409905, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dnxu"]
+size = Vector3(5.020508, 0.56347656, 5.4240723)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a141m"]
+size = Vector3(0.6590576, 3.9420776, 5.307617)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a141m"]
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbgp1"]
+albedo_color = Color(0.73853457, 0.28073344, 0, 1)
+metallic = 0.65
+metallic_specular = 0.0
+
+[node name="GymModels_OnlyGYM" instance=ExtResource("1_3dnxu")]
+
+[node name="Gym" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3dnxu")
+
+[node name="StaticBody3D" parent="Gym" index="0"]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape3D" parent="Gym/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21826172, 0)
+shape = SubResource("BoxShape3D_3dnxu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Gym/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66183, 1.4710388, 0)
+shape = SubResource("BoxShape3D_a141m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Gym/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6661549, 1.4710388, 0)
+shape = SubResource("BoxShape3D_a141m")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Gym/StaticBody3D" index="3"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.14778876, 1.4710388, 2.6298652)
+shape = SubResource("BoxShape3D_a141m")
+
+[node name="Mirror" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_a141m")
+
+[node name="StaticBody3D" parent="Mirror" index="0"]
+collision_layer = 8
+collision_mask = 7
+
+[node name="Door" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lbgp1")
+
+[node name="StaticBody3D" parent="Door" index="0"]
+collision_layer = 8
+collision_mask = 7

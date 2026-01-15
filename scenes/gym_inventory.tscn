@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://b6kw5cxdtmeli"]
+
+[ext_resource type="PackedScene" uid="uid://b4711ejfxqet7" path="res://models/GymModels_Inventory.glb" id="1_hvq7m"]
+[ext_resource type="PackedScene" uid="uid://bqfmc5jydh6pv" path="res://scenes/bottle_cap.tscn" id="2_5huaf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvq7m"]
+albedo_color = Color(1, 0, 0.12941177, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5huaf"]
+albedo_color = Color(1, 0, 0.12941177, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66vpv"]
+albedo_color = Color(1, 0, 0.12941177, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7euxs"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e34y6"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52nk8"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26yac"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_is3v2"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubsl3"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfjy3"]
+albedo_color = Color(0.3254902, 0.2901961, 1, 1)
+
+[node name="GymModels_Inventory" instance=ExtResource("1_hvq7m")]
+
+[node name="Carpet" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hvq7m")
+
+[node name="StaticBody3D" parent="Carpet" index="0"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Carpet_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5huaf")
+
+[node name="StaticBody3D" parent="Carpet_001" index="0"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Carpet_002" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_66vpv")
+
+[node name="StaticBody3D" parent="Carpet_002" index="0"]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Kettlebell" parent="." index="3"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="Kettlebell" parent="Kettlebell" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7euxs")
+
+[node name="Kettlebell_001" parent="." index="4"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="Kettlebell_001" parent="Kettlebell_001" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e34y6")
+
+[node name="dumbbell" parent="." index="5"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="dumbbell" parent="dumbbell" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_52nk8")
+
+[node name="dumbbell_001" parent="." index="6"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="dumbbell_001" parent="dumbbell_001" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_26yac")
+
+[node name="Barbell" parent="." index="7"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="Barbell" parent="Barbell" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_is3v2")
+
+[node name="Bottle" parent="." index="8"]
+collision_layer = 4
+collision_mask = 14
+
+[node name="Bottle" parent="Bottle" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ubsl3")
+
+[node name="BottleCap" parent="Bottle" index="2" instance=ExtResource("2_5huaf")]
+
+[node name="Bottle_Cap" parent="." index="9"]
+visible = false
+collision_layer = 4
+collision_mask = 14
+
+[node name="Bottle_Cap" parent="Bottle_Cap" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lfjy3")
