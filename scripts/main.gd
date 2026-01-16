@@ -8,8 +8,6 @@ signal pose_recentered
 var xr_interface: XRInterface
 var xr_is_focussed = false
 
-
-
 func _ready() -> void:
 	xr_interface = XRServer.find_interface("OpenXR")
 	if xr_interface and xr_interface.is_initialized():
@@ -30,11 +28,10 @@ func _ready() -> void:
 		xr_interface.session_focussed.connect(_on_openxr_focused_state)
 		xr_interface.session_stopping.connect(_on_openxr_stopping)
 		xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
-		
 	else:
 		print("OpenXR не инициализирован, проверьте подключение гарнитуры")
 		get_tree().quit()
-		
+	
 	
 func _on_openxr_session_begun() -> void:
 	var current_refresh_rate = xr_interface.get_display_refresh_rate()

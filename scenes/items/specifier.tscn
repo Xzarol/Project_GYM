@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxa4bwoxpp241"]
+
+[ext_resource type="Script" uid="uid://cc5lxo6vs5bg" path="res://scenes/specifier.gd" id="1_1ibqb"]
+
+[node name="Specifier" type="Node"]
+script = ExtResource("1_1ibqb")
+itemSpec = "Kettlebell"

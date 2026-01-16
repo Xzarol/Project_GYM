@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsf6fx2wao5iv"]
+[gd_scene load_steps=9 format=3 uid="uid://bsf6fx2wao5iv"]
 
 [ext_resource type="PackedScene" uid="uid://njx823gyk04n" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_hand.tscn" id="1_2mhnt"]
+[ext_resource type="Script" uid="uid://b7lhqv2ixexgl" path="res://scripts/player_xrorigin_3d.gd" id="1_x1wxn"]
 [ext_resource type="PackedScene" uid="uid://raeeicvvindd" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_hand.tscn" id="2_abqwf"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_5k8lx"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_abqwf"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_ov81k"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_e8uvi"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5k8lx"]
+size = Vector3(3.3834534, 0.8473625, 3.4822083)
+
 [node name="Player_XRORIGIN3D" type="XROrigin3D"]
+script = ExtResource("1_x1wxn")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -17,8 +22,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
 
 [node name="FunctionPickup" parent="LeftHand" instance=ExtResource("3_5k8lx")]
+grab_distance = 0.1
+ranged_enable = false
 
 [node name="LeftHand" parent="LeftHand" instance=ExtResource("1_2mhnt")]
+
+[node name="BarbellScore" type="Label3D" parent="LeftHand/LeftHand"]
+transform = Transform3D(8.534335e-17, 3.90486e-09, -0.9815022, -1.9524278e-09, -0.044666395, -8.580564e-08, -0.044666342, 1.95243e-09, 1.8753417e-15, -0.047273576, -0.024046898, 0.02371195)
+text = "BarbellScore
+"
+
+[node name="DumbbellScore" type="Label3D" parent="LeftHand/LeftHand"]
+transform = Transform3D(8.534335e-17, 3.90486e-09, -0.9815022, -1.9524278e-09, -0.044666395, -8.580564e-08, -0.044666342, 1.95243e-09, 1.8753417e-15, -0.047273576, 0.0041433573, 0.02371195)
+text = "DumbbellScore"
+
+[node name="KettleBellScore" type="Label3D" parent="LeftHand/LeftHand"]
+transform = Transform3D(8.534335e-17, 3.90486e-09, -0.9815022, -1.9524278e-09, -0.044666395, -8.580564e-08, -0.044666342, 1.95243e-09, 1.8753417e-15, -0.047273576, -0.009215951, 0.02371195)
+text = "KettleBellScore
+"
 
 [node name="MovementDirect" parent="LeftHand" instance=ExtResource("3_abqwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -29,6 +50,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
 [node name="FunctionPickup" parent="RightHand" instance=ExtResource("3_5k8lx")]
+grab_distance = 0.1
+ranged_enable = false
 
 [node name="RightHand" parent="RightHand" instance=ExtResource("2_abqwf")]
 
@@ -36,7 +59,32 @@ tracker = &"right_hand"
 turn_mode = 1
 step_turn_angle = 45.0
 
+[node name="StaminaLabel" type="Label3D" parent="RightHand"]
+transform = Transform3D(5.245365e-09, 1.0490732e-08, 0.9999999, 4.5856447e-16, -0.11999999, 8.742277e-08, 0.11999999, 0, -4.3711385e-08, 0.037424743, 0, 0)
+text = "Stamina: 100
+"
+
 [node name="PlayerBody" parent="." instance=ExtResource("5_e8uvi")]
 collision_layer = 524289
-collision_mask = 1016
-player_height_max = 1.0
+collision_mask = 968
+player_height_min = 0.1
+player_height_max = 1.7
+
+[node name="PumpUp" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 20
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PumpUp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037704468, 1.9474107, -0.4761449)
+shape = SubResource("BoxShape3D_5k8lx")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="has_dropped" from="LeftHand/FunctionPickup" to="." method="_on_left_pickup_has_dropped"]
+[connection signal="has_picked_up" from="LeftHand/FunctionPickup" to="." method="_on_left_pickup_has_picked_up"]
+[connection signal="has_dropped" from="RightHand/FunctionPickup" to="." method="_on_right_pickup_has_dropped"]
+[connection signal="has_picked_up" from="RightHand/FunctionPickup" to="." method="_on_right_pickup_has_picked_up"]
+[connection signal="body_entered" from="PumpUp" to="." method="_on_pump_up_body_entered"]
+[connection signal="body_exited" from="PumpUp" to="." method="_on_pump_up_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_physicsTimesr_timeout"]
